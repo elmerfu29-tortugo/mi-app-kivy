@@ -1,4 +1,4 @@
-name: Build APK with Docker
+name: Build APK
 
 on:
   push:
@@ -14,6 +14,8 @@ jobs:
     
     - name: Build APK with Docker
       uses: docker://kivy/buildozer:latest
+      env:
+        BUILDOZER_ROOT_IGNORE: 1  # 👈 Esto evita la pregunta
       with:
         args: |
           bash -c "
