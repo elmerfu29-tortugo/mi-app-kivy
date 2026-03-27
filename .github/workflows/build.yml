@@ -26,7 +26,14 @@ jobs:
     - name: Build APK
       run: |
         buildozer init
+        
+        # Configurar buildozer.spec
         sed -i 's/^requirements = .*/requirements = python3,kivy/' buildozer.spec
+        sed -i 's/^android.api = .*/android.api = 30/' buildozer.spec
+        sed -i 's/^android.minapi = .*/android.minapi = 21/' buildozer.spec
+        sed -i 's/^android.ndk = .*/android.ndk = 23b/' buildozer.spec
+        
+        # Construir
         buildozer android debug
     
     - name: Upload APK
